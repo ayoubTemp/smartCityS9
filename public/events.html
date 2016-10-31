@@ -57,7 +57,9 @@
  <!-- divider section -->
  <!-- /divider section -->
 <!-- map section -->
-
+<section class="map">
+    <div id="map"  style="position: absolute;  width: 50%; height: 50%;"></div>
+</section>
 
 
 
@@ -96,7 +98,26 @@
     });
 </script>
 
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYH8-DoR9c_OIBYcppBeERGu8fWWkOgaI&callback=initMap">
+</script>
+<script>
 
+    function initMap() {
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+        });
+    }
+</script>
 <!-- /js for banner -->
 <!-- /js files -->
 </body>
