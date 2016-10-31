@@ -1,0 +1,11 @@
+{
+  "name": "smartCityS9",
+  "version": "0.0.1",
+  "description": "provide some smart city services",
+  "main": "app.js",
+  "author": "Ayba",
+  "dependencies": {
+    "express": "latest",
+    "ejs": "~2.5.2"
+  }
+}
