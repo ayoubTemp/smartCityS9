@@ -58,7 +58,10 @@
  <!-- /divider section -->
 <!-- map section -->
 <section class="map">
-    <div id="map"  style="position: absolute;  width: 50%; height: 50%;"></div>
+
+    <div id="map" class="col-md-6" style="position: absolute;  width: 50%; height: 50%;"></div>
+    <div id="here_table"  class="table-responsive col-md-6 pull-right" style=" width: 50%; height: 50%;"></div>
+
 </section>
 
 
@@ -104,19 +107,44 @@
 <script>
 
     function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
+      //44.8070° N, 0.6055° W
+        var myLatLng = {lat: 44.8070, lng: 0.6055 };
 
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
+            zoom: 10,
             center: myLatLng
         });
 
         var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
-            title: 'Hello World!'
+            title: 'reunion projet s9'
         });
     }
+
+</script>
+<script>
+    //POPULATE TABLE
+    var eventsJson=[{
+        name:"reunion projet s9",
+        city:"talence",
+        day:"november the 4th",
+        start:"14h00",
+        end:"17h00"
+
+    }];
+    var table = $('<table></table>').addClass('table  table-bordered');
+    var content = "<tr><td>nom</td><td>ville</td><td>jour</td><td>debut</td><<td>fin</td></tr>";
+
+    eventsJson.forEach(function(row){
+        content +="<tr><td>"+row.name+"</td><td>"+row.city+ "</td><td>"+row.day+
+                "</td><td>"+row.start+"</td><td>"+row.end+"</td></tr>"
+    })
+
+
+
+    table.append(content);
+    $('#here_table').append(table);
 </script>
 <!-- /js for banner -->
 <!-- /js files -->
