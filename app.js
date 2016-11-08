@@ -37,6 +37,12 @@ app.get("/events",  function(req, res) {
         options.query=req.query.query;
         options.since=req.query.starts;
         options.until=req.query.ends;
+        //select the fields we want in our response
+      /*
+      options.fields="name,type,description,startTime,endTime,venue";
+      //note to self:u betteer edit the node module or rewrite it urself
+      //this way u'll fix the problems u noticed with the original node module
+       */
        //it's a bad idea to put it here but it' temporary
         //note to self:put all your keys in env variables
         options.accessToken="1725944747730254|f70f4cbc49a91a92a4350b022cca2858";
