@@ -6,6 +6,7 @@
   "author": "Ayba",
   "dependencies": {
     "express": "latest",
-    "ejs": "~2.5.2"
+    "ejs": "~2.5.2",
+    "facebook-events-by-location-core": "~0.1.5"
   }
 }
