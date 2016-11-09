@@ -117,7 +117,7 @@
 
 <script>
 
-    function initMap() {
+   /* function initMap() {
       //44.8070° N, 0.6055° W
         var myLatLng = {lat: 44.8070, lng: 0.6055 };
 
@@ -132,9 +132,10 @@
             title: 'reunion projet s9'
         });
     }
-
+*/
 </script>
 <script>
+    function initMap() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
@@ -147,7 +148,7 @@
                 var content = " <thead>  <tr> <th>nom</th>   <th>endroit</th> <th>categorie</th> <th>start</th> <th>end</th> </tr>  </thead>  <tbody> ";
 
                 eventsJson.forEach(function(row){
-                    content +="<tr><td>"+row.name+"</td><td>"+row.venue.name+ "</td><td>"+row.description+
+                    content +="<tr><td>"+row.name+"</td><td>"+row.venue.name+ "</td><td>"+row.category+
                             "</td><td>"+row.startTime+"</td><td>"+row.endTime+"</td></tr>"
                 })
                 content+="</tbody>"
@@ -157,10 +158,41 @@
                 $(document).ready(function() {
                     $('#example').DataTable();
                 } );
+          //      function initMap(eventsJson) {
+                    //44.8070° N, 0.6055° W
+                   // var myLatLng = {lat: 44.8070, lng: 0.6055 };
 
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 12,
+                        center: pos
+                    });
+                    setMarkers(map);
+
+                  /*  var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: 'reunion projet s9'
+                    });*/
+
+
+                function setMarkers(map) {
+                    // Adds markers to the map.
+
+
+
+                    for (var i = 0; i < eventsJson.length; i++) {
+
+                        var marker = new google.maps.Marker({
+                            position: {lat: eventsJson[i].venue.location.latitude, lng:eventsJson[i].venue.location.longitude},
+                            map: map,
+                            title:eventsJson[i].name
+
+                        });
+                    }
+                }
             });
 
-        })}
+        })}}
 
 
             //POPULATE TABLE
