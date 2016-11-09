@@ -114,6 +114,7 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYH8-DoR9c_OIBYcppBeERGu8fWWkOgaI&callback=initMap">
 </script>
+
 <script>
 
     function initMap() {
@@ -134,34 +135,52 @@
 
 </script>
 <script>
-    //POPULATE TABLE
-    var eventsJson=[{
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            $.get( '/events?lat='+pos.lat+'&lng='+pos.lng+'&distance=10000', function( data) {
+                //the events are in the json response property 'events'
+                var eventsJson=data.events;
+                var content = " <thead>  <tr> <th>nom</th>   <th>endroit</th> <th>categorie</th> <th>start</th> <th>end</th> </tr>  </thead>  <tbody> ";
+
+                eventsJson.forEach(function(row){
+                    content +="<tr><td>"+row.name+"</td><td>"+row.venue.name+ "</td><td>"+row.description+
+                            "</td><td>"+row.startTime+"</td><td>"+row.endTime+"</td></tr>"
+                })
+                content+="</tbody>"
+
+
+                $('#example').append(content);
+                $(document).ready(function() {
+                    $('#example').DataTable();
+                } );
+
+            });
+
+        })}
+
+
+            //POPULATE TABLE
+   /* var eventsJson=[{
         name:"reunion projet s9",
         city:"talence",
         day:"november the 4th",
         start:"14h00",
         end:"17h00"
 
-    }];
+    }];*/
    // var table = $('<table ></table>').addClass('table  table-striped table-bordered').attr("id","eventsDataTable");
-    var content = " <thead>  <tr> <th>nom</th>   <th>ville</th> <th>day</th> <th>start</th> <th>end</th> </tr>  </thead>  <tbody> ";
-
-    eventsJson.forEach(function(row){
-        content +="<tr><td>"+row.name+"</td><td>"+row.city+ "</td><td>"+row.day+
-                "</td><td>"+row.start+"</td><td>"+row.end+"</td></tr>"
-    })
-content+="</tbody>"
-
-
-    $('#example').append(content);
 
    // $('#here_table').append(table);
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+  /*  $(document).ready(function() {
         $('#example').DataTable();
-    } );
+    } );*/
 </script>
 <!-- /js for banner -->
 <!-- /js files -->
