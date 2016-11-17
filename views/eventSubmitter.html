@@ -112,13 +112,13 @@
         </div>
         <div class="portlet-body form">
           <!-- BEGIN FORM-->
-          <form action="200.jsp" class="form-horizontal">
+          <form action="/events" class="form-horizontal">
           
               <div class="form-body">
 <div class="form-group">
 <label class="control-label col-md-3">Date Range</label>
 <div class="col-md-4">
-<div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+<div class="input-group input-large date-picker input-daterange" data-date="10/11/2016" data-date-format="mm/dd/yyyy">
 <input class="form-control" name="from" type="text">
 <span class="input-group-addon"> to </span>
 <input class="form-control" name="to" type="text">
@@ -129,7 +129,7 @@
 <div class="form-group">
 										<label class="control-label col-md-3">categorie</label>
 										<div class="col-md-4">
-											<select class="form-control input-large select2me" data-placeholder="Select...">
+											<select class="form-control input-large select2me" name="category" data-placeholder="Select...">
  
 												<option value="ART_EVENT">art</option>
 												<option value="BOOK_EVENT">book event</option>
@@ -150,15 +150,16 @@
               <div class="form-group">
                 <label class="col-md-3 control-label" >use my location</label>
                 <div class="col-md-4">
-                  <input type="checkbox" class="form-control"   name="name">
- 
+                  <input type="checkbox" class="form-control"   name="useMyLoc">
+                    <input type='hidden' name='lat'/>
+                    <input type='hidden' name='lng' />
                 </div>
               </div>
      
               <div class="form-group ">
                 <label class="col-md-3 control-label">location</label>
                 <div class="col-md-4">
-                  <input type="text" class="form-control input-large select2me" placeholder="location"  name="adresse">
+                  <input type="text" class="form-control input-large select2me" placeholder="location"  name="location">
 
                 </div>
 
@@ -172,7 +173,7 @@
               <div class="row">
                 <div class="col-md-offset-3 col-md-9">
                   <button type="submit" class="btn green">Submit</button>
-                  <button type="button" class="btn default">Cancel</button>
+           
                 </div>
               </div>
             </div>
@@ -222,7 +223,31 @@
         }
     });
 </script>
- 
+ <script>
+     $('input[name=useMyLoc]').change(function(){
+     //    var c = this.checked ? '#f00' : '#09f';
+          if(this.checked) {
+             $('input[name=location]').prop('disabled', true);
+             if (navigator.geolocation) {
+             //    navigator.geolocation.getCurrentPosition(successCallback,errorCallback,{timeout:10000});
+
+                 navigator.geolocation.getCurrentPosition(function (position) {
+
+                     $('input[name=lat]').val(position.coords.latitude);
+                     $('input[name=lng]').val(position.coords.longitude);
+
+                  },function(err){alert(err);console.log(err.message)},{timeout:10000})
+
+             }
+          }
+         if(!this.checked){
+             $('input[name=location]').prop('disabled', false);
+             $('input[name=lat]').val("");
+             $('input[name=lng]').val("");
+
+         }
+     });
+ </script>
 <!-- /js for banner -->
 <!-- /js files -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
