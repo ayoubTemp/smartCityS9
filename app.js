@@ -1,9 +1,7 @@
 /**
  * Created by ayoub on 31/10/16.
  */
-/**
- * Created by ayoub on 13/04/16.
- */
+
 var express = require('express');
 var EventSearch = require("facebook-events-by-location-core");
 
@@ -21,7 +19,12 @@ app.use(function(req, res, next) {
 app.get('/',function(req, res){
     res.render('service.html');
 });
+app.get('/eventFormHandler',function(req, res){
+     
+    res.render('eventSubmitter.html');
+});
 app.get('/eventfullCity',function(req, res){
+    
     res.render('events.html')
 });
 app.get("/events",  function(req, res) {
@@ -56,6 +59,8 @@ app.get("/events",  function(req, res) {
         });
     }
 });
+
+
 app.set('port', (process.env.PORT || 8082));
 
 app.listen(app.get('port'), function() {
