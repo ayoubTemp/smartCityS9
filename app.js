@@ -4,7 +4,8 @@
 
 var express = require('express');
 var EventSearch = require("facebook-events-by-location-core");
-
+var request = require('request');
+var cheerio = require('cheerio');
 
 var app     = express();
 app.use(express.static(__dirname + '/views'));
@@ -58,6 +59,63 @@ app.get("/events",  function(req, res) {
             res.status(500).json(error);
         });
     }
+});
+
+//get the most used words  on the website
+app.get('/getWordList', function(req, res){
+
+//it was so complicated to parse the web site since there are ads
+// and html tags and for now this solution is much better
+//note to self:u found a way to save the day but yi have to do
+    //it on ur free time
+    var url=req.query['url'];
+   // var numberOfKeyWords=parseInt(req.query['numberOfKeyWords']);
+   // console.log(numberOfKeyWords)
+
+
+    request.post({
+        headers: {'content-type' : 'application/x-www-form-urlencoded'},
+        url:     'http://www.seowebpageanalyzer.com/',
+        body:    "url="+url
+    }, function(error, response, html){
+        var wordList=[]
+        var $ = cheerio.load(html);
+        var table= $('table').first();
+        // console.log(table);
+        ///  var tb=[1,2,3,3,3];
+        table.find("tr").each( function (i,element) {
+            var children = $(this).children();
+            var row = {
+                "keyword" : $(children[0]).text(),
+                "frequency" : $(children[1]).text()
+            };
+
+            wordList.push(row);
+            // console.log(i)
+        });
+        //send ony the number required by the user
+        /*var slicedWordList=wordList.slice(0, numberOfKeyWords+1);
+        pathArray = url.split( '/' );
+        targetWebSite = pathArray[2];
+//        fs.writeFile(targetWebSite+" key words",util.inspect(slicedWordList), function (err) {
+        fs.writeFile(targetWebSite+" key words",JSON.stringify(slicedWordList), function (err) {
+
+            if (err) throw err;
+
+            console.log('It\'s saved! in the app folder');
+
+        });*/
+        res.json(wordList);
+//console.log(wordList);
+
+
+
+    });
+
+
+
+
+
 });
 
 
