@@ -6,6 +6,16 @@ var express = require('express');
 var EventSearch = require("facebook-events-by-location-core");
 var request = require('request');
 var cheerio = require('cheerio');
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'dimasql007',
+    database : 'dwcdb'
+});
+
+connection.connect();
+
 
 var app     = express();
 app.use(express.static(__dirname + '/views'));
@@ -116,6 +126,45 @@ app.get('/getWordList', function(req, res){
 
 
 
+});
+
+//get the domain name of a word (english word for now)
+app.get('/getDomainName', function(req, res) {
+    var word = req.query['word'];
+
+  //  var obj = JSON.parse(fs.readFileSync(targetWebSite + " key words", 'utf8'));
+    //  console.log(obj[1].keyword);
+    connection.query('SELECT id_n from english_index where lemma="'+word+'"', function (err, rows, fields) {
+        if (!err) {
+            console.log('The solution is: ', rows);
+            var domains  = rows[0].id_n.split(' ');
+          /*  var domains="(";
+            domainsArray.forEach(function(domain){
+                domains+="'"+domain
+            })*/
+            console.log(domains)
+               var domainsQuery="('";
+             for (var i=0;i<domains.length-1;i++){
+             domainsQuery+=domains[i]+"','";
+             }
+             var size=domains.length-1
+             domainsQuery+=domains[size]+"')"
+             console.log(domainsQuery)
+            var sql = 'SELECT english from semfield where synset IN ' + domainsQuery ;
+            /*   var inserts = [domainsQuery];
+             sql = mysql.format(sql, inserts);
+             //sql+=domainsQuery;*/
+            connection.query(sql, function (err, rows) {
+                if (!err) {
+                    console.log('The solution is: ', rows);
+                    res.json(rows)
+                } else
+                    console.log(err);
+            })
+
+        } else
+            console.log('Error while performing Query.');
+    });
 });
 
 
