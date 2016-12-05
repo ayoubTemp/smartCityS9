@@ -38,6 +38,10 @@ app.get('/eventfullCity',function(req, res){
     
     res.render('events.html')
 });
+app.get('/smartParking',function(req, res){
+    
+    res.render('parking.html')
+});
 app.get("/events",  function(req, res) {
    ///check if the user specified the coordinates
     if (!req.query.lat || !req.query.lng) {
