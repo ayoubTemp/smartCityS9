@@ -4,11 +4,15 @@
   "description": "provide some smart city services",
   "main": "app.js",
   "author": "Ayba",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "express": "latest",
     "ejs": "~2.5.2",
     "facebook-events-by-location-core": "~0.1.5",
     "cheerio": "~0.22.0",
-    "request": "~2.79.0"
+    "request": "~2.79.0",
+    "mysql": "~2.12.0"
   }
 }

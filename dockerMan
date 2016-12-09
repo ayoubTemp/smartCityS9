@@ -1,0 +1,7 @@
+ docker run ayba/node-web-app
+docker stop $(docker ps -q --filter ancestor=ayba/node-web-app)
+docker run -p 8080:8082 -d ayba/node-web-app
+docker build -t ayba/node-web-app .
+docker images
+
+
