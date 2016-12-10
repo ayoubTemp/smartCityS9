@@ -7,11 +7,12 @@ var EventSearch = require("facebook-events-by-location-core");
 var request = require('request');
 var cheerio = require('cheerio');
 var mysql      = require('mysql');
+require('dotenv').config()
 /*var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'dimasql007',
-    database : 'dwcdb'
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASS,
+    database : process.env.DB_NAME
 });
 
 connection.connect();*/
@@ -63,7 +64,7 @@ app.get("/events",  function(req, res) {
        */
        //it's a bad idea to put it here but it' temporary
         //note to self:put all your keys in env variables
-        options.accessToken="1725944747730254|f70f4cbc49a91a92a4350b022cca2858";
+        options.accessToken= process.env.FB_KEY;
         //now that everything is set ,we call the eventSearch moduke
         eventsLookup=new EventSearch(options);
         // Search and handle results
