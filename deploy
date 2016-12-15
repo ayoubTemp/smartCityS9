@@ -1,0 +1,8 @@
+-#!/bin/sh     
+ssh ssh ec2-user@35.161.145.117    <<EOF       
+ cd smartCity/smartcitys9/smartcitys9/ 
+ git pull origin master     
+ npm install       
+ pm2 restart all
+ exit      
+EOF
