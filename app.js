@@ -35,9 +35,18 @@ app.get('/eventFormHandler',function(req, res){
      
     res.render('eventSubmitter.html');
 });
+
+app.get('/eventProfilePicker',function(req, res){
+     
+    res.render('profiles.html');
+});
 app.get('/eventfullCity',function(req, res){
     
     res.render('events.html')
+});
+app.get('/offTrackStudentsFormHandler',function(req, res){
+     
+    res.render('dataSubmitter.html');
 });
 app.get('/smartParking',function(req, res){
     
