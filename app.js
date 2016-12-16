@@ -7,6 +7,7 @@ var EventSearch = require("facebook-events-by-location-core");
 var request = require('request');
 var cheerio = require('cheerio');
 var mysql      = require('mysql');
+var fs = require('fs');
 require('dotenv').config()
 /*var connection = mysql.createConnection({
     host     : process.env.DB_HOST,
@@ -52,7 +53,8 @@ app.get('/smartParking',function(req, res){
     
     res.render('parking.html')
 });
-app.get("/events",  function(req, res) {
+
+app.get("/eventsOld",  function(req, res) {
    ///check if the user specified the coordinates
     if (!req.query.lat || !req.query.lng) {
         res.status(500).json({message: "Please specify the lat and lng parameters!"});
@@ -85,6 +87,17 @@ app.get("/events",  function(req, res) {
     }
 });
 
+app.get("/events",  function(req, res) {
+   ///check if the user specified the coordinates
+   
+     var name=req.query.name;
+     fs.readFile('./dataModel/eventfull city/model_'+name+'.json', 'utf8', function (err, data) {
+  if (err) throw err;
+  events = JSON.parse(data);
+ res.json(events);
+});
+     
+});
 //get the most used words  on the website
 app.get('/getWordList', function(req, res){
 
