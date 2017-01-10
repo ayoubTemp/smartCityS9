@@ -346,12 +346,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         zoom: 12,
                         center: pos
                     });
-                    var marker = new google.maps.Marker({
-                        position: {lat: eventsJson[0].latitude, lng:eventsJson[0].longitude},
-                        map: map,
 
-                        title:eventsJson[0].name
-                    });
 
                     setMarkers(map,eventsJson);
 
@@ -364,23 +359,40 @@ License: You must have a valid license purchased only from themeforest(the above
                         // Shapes define the clickable region of the icon. The type defines an HTML
                         // <area> element 'poly' which traces out a polygon as a series of X,Y points.
                         // The final coordinate closes the poly by connecting to the first coordinate.
-                        var shape = {
-                            coords: [1, 1, 1, 20, 18, 20, 18, 1],
-                            type: 'poly'
-                        };
+
 
 
                          for (var i = 0; i < eventsJson.length; i++) {
 
-                            var marker = new google.maps.Marker({
+                           /* var marker = new google.maps.Marker({
                                 position: {lat: eventsJson[i].latitude, lng:eventsJson[i].longitude},
                                 map: map,
                                 shape:shape,
                                 title:eventsJson[i].name
-                            });
+                            });*/
+                             var marker = new google.maps.Marker({
+                                 position: {lat: eventsJson[i].latitude, lng:eventsJson[i].longitude},
+                                 map: map,
+                                 title:eventsJson[i].titre,
+                                 clickable:true
+                             });
+
+                            /* marker.info = new google.maps.InfoWindow({
+                                 content:  eventsJson[i].texteMilieu
+                             });
+
+                             google.maps.event.addListener(marker, 'click', function() {
+                                 marker.info.open(map, marker);
+                             });*/
+                             var info_window = new google.maps.InfoWindow({content: ''});
+                             marker.note = eventsJson[i].texteMilieu;
+                             google.maps.event.addListener(marker, 'click', function() {
+                                 info_window.content = this.note;
+                                 info_window.open(this.getMap(), this);
+                             });
                         }
                     }
-                     function addMarker(i, lat, lng, img, name, price) {
+                     /*function addMarker(i, lat, lng, img, name, price) {
                         if (lat != null && lng != null) {
                             myLatLng = new google.maps.LatLng(lat, lng);
                             bounds = new google.maps.LatLngBounds();
@@ -404,7 +416,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 infowindow_obj.open(map, marker_obj);
                             });
                         }
-                    }
+                    }*/
                 });
 
             } }
