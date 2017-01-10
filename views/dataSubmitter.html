@@ -1,0 +1,436 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Régression de l'élève</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- font files -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Viga' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'  rel='stylesheet' type='text/css'>
+
+    <link href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css'  rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- /font files -->
+    <!-- css files -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/typo.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/info.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!-- /css files -->
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+<link href="assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+<link href="assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link href="assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+<link href="assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/clockface/css/clockface.css"/>
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/bootstrap-datepicker/css/datepicker3.css"/>
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/bootstrap-colorpicker/css/colorpicker.css"/>
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/bootstrap-select/bootstrap-select.min.css"/>
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="assets/global/plugins/jquery-multi-select/css/multi-select.css"/>
+ 
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
+<link href="assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+<!-- END THEME STYLES -->
+</head>
+<body>
+<script src="js/jquery.min.js"></script>
+<!-- navigation -->
+<div class="navbar-wrapper">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-static-top cl-effect-5">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><h1>Smart city</h1></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.html"><span data-hover="Home">Home</span></a></li>
+                        <li><a href="about.html"><span data-hover="About">About</span></a><span class="line1">/<span></li>
+                        <li class="active"><a href="service.html"><span data-hover="Services">Services</span></a><span class="line1">/<span></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- /navigation -->
+<!-- banner section -->
+<section class="innerpage-banner">
+
+</section>
+<!-- /banner section -->
+
+
+<!-- Page Content -->
+<!-- BEGIN CONTAINER -->
+
+<div class="page-container">
+	 
+
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+ 
+
+			<!-- BEGIN PAGE HEADER-->
+
+
+			<!-- END PAGE HEADER-->
+			<!-- BEGIN PAGE CONTENT-->
+
+            <div class="portlet light bordered">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="icon-equalizer font-red-sunglo"></i>
+            <span class="caption-subject font-red-sunglo bold uppercase">info élève</span>
+
+          </div>
+
+        </div>
+        <!--div class="portlet-body form"-->
+          <!-- BEGIN FORM-->
+          
+<table>
+
+<tr>
+<td><label class="col-md-12 control-label">note 1er semestre</label></td>
+<td><input type="text" class="form-control" placeholder="note S1" name="noteS1" id="noteS1"></td>
+<td><button id="a" class="btn green" onClick="regressionS1()">Submit</button></td>
+<td><label id="ResultNoteS1"></label></td>
+</tr>
+
+<tr>
+<td><label class="col-md-12 control-label">note 2ème semestre</label></td>
+<td><input type="text" class="form-control" placeholder="note S2" name="noteS2" id="noteS2"></td>
+<td><button id="b" class="btn green" onClick="regressionS2()">Submit</button></td>
+<td><label id="ResultNoteS2"></label></td>
+</tr>
+
+<tr>
+<td><label class="col-md-12 control-label">note 3ème semestre</label></td>
+<td><input type="text" class="form-control" placeholder="note S3" name="noteS3" id="noteS3"></td>
+<td><button id="c" class="btn green" onClick="regressionS3()">Submit</button></td>
+<td><label id="ResultNoteS3"></label></td>
+</tr>
+
+<tr>
+<td><label class="col-md-12 control-label">heures d'absence</label></td>
+<td><input type="text" class="form-control" placeholder="absences"  name="absence" id="absence"></td>
+<td><button id="d" class="btn green" onClick="regressionAbsence()">Submit</button></td>
+<td><label id="ResultAbsence"></label></td>
+</tr>
+
+<tr>
+<td><label class="col-md-12 control-label">heures de révision</label></td>
+<td><select class="form-control input-large select2me" name="revision" id="revision" data-placeholder="Select...">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+</select></td>
+<td><button id="e" class="btn green" onClick="regressionRevision()">Submit</button></td>
+<td><label id="ResultRevision"></label></td>
+</tr>
+
+<tr>
+
+<td><label class="col-md-12 control-label">Cours suplémentaires</label></td>
+<td><select class="form-control input-large select2me" name="sup" id="sup" data-placeholder="Select...">
+<option value="oui">OUI</option>
+<option value="non">NON</option>
+</select></td>
+<td><button id="f" class="btn green" onClick="regressionSup()">Submit</button></td>
+<td><label id="ResultSup"></label></td>
+</tr>
+
+</table>
+
+   <!--<tr>
+       <td><label class="col-md-3 control-label">absences</label></td>
+
+       <td><input type="text" class="form-control" placeholder="param2"  name="param2" id="absence"></td>
+<td><button id="b" class="btn green" onClick="regression2()">Submit</button></td>
+<td><label id="absenceResult"></label></td>
+
+   </tr>!-->
+
+
+              <!--div class="form-body">
+
+              <div class="form-group">
+                <label class="col-md-3 control-label" >studyTime</label>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" placeholder="param1" name="param1" id="Study">
+		 
+                </div>
+              </div>
+     
+              <div class="form-group ">
+                <label class="col-md-3 control-label">absences</label>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" placeholder="param2"  name="param2" id="absence">
+                </div>
+              </div>
+
+	      <div class="form-group ">
+                <label class="col-md-3 control-label">notes</label>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" placeholder="param3" name="param3" id="note">
+                </div>
+              </div>
+           
+
+
+
+            </div>
+            <div class="form-actions">
+              <div class="row">
+                <div class="col-md-offset-3 col-md-9">
+                  <button  class="btn green" onClick="regression()">Submit</button>
+           
+                </div>
+              </div>
+            </div-->
+          
+          <!-- END FORM-->
+        </div>
+      </div>
+
+		<!-- END PAGE CONTENT-->
+		</div>
+	 
+	<!-- END CONTENT -->
+
+</div>
+<!-- END CONTAINER -->
+ <!-- /Page Content -->
+<!-- footer -->
+
+<!-- footer -->
+<!-- js files -->
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/SmoothScroll.min.js"></script>
+ 
+
+
+<!-- js for team section -->
+<script src="js/index.js"></script>
+<!-- /js for team section -->
+<!-- js for banner -->
+<script type="text/javascript" src="js/zslider-1.0.1.js"></script>
+<script type="text/javascript">
+    var slider = $('.slider').zslider({
+        imagePanels: $('.slider-panel'),
+        ctrlItems: $('.slider-item'),
+        ctrlItemHoverCls: 'slider-item-selected',
+        //panelHoverShowFlipBtn: false,
+        flipBtn: {
+            container: $('.slider-page'),
+            preBtn: $('.slider-pre'),
+            nextBtn: $('.slider-next')
+        },
+        callbacks: {
+            animate: function(imagePanels, ctrlItems, fromIndex, toIndex) {
+                return true;
+            }
+        }
+    });
+</script>
+ <script>
+     $('input[name=useMyLoc]').change(function(){
+     //    var c = this.checked ? '#f00' : '#09f';
+          if(this.checked) {
+             $('input[name=location]').prop('disabled', true);
+             if (navigator.geolocation) {
+             //    navigator.geolocation.getCurrentPosition(successCallback,errorCallback,{timeout:10000});
+
+                 navigator.geolocation.getCurrentPosition(function (position) {
+
+                     $('input[name=lat]').val(position.coords.latitude);
+                     $('input[name=lng]').val(position.coords.longitude);
+
+                  },function(err){alert(err);console.log(err.message)},{timeout:10000})
+
+             }
+          }
+         if(!this.checked){
+             $('input[name=location]').prop('disabled', false);
+             $('input[name=lat]').val("");
+             $('input[name=lng]').val("");
+
+         }
+     });
+ </script>
+<script language="javascript">
+// Asynchronous read
+
+function regressionS1(){
+
+			
+			var param1 = $('#noteS1').val();
+
+			var param2= $('#noteS2').val();
+			var param3= $('#noteS3').val();
+			var param4= $('#absence').val();
+			var param5= $('#sup').val();
+			var param6= $('#revision').val();
+
+ 			jQuery.get('/regression?param1='+param1, function( data) {
+			document.getElementById("ResultNoteS1").innerHTML=String("&nbsp;&nbsp; une note de "+param1 +" conduit à une probabilité d'echec de "+ Math.round(parseFloat(data.resultS1)*100)/100+ " avec une précision de "+ Math.round(parseFloat(data.precisionS1)*100)/100); 
+	
+
+});
+}
+function regressionS2(){			
+			var param1 = $('#noteS1').val();
+
+			var param2= $('#noteS2').val();
+			var param3= $('#noteS3').val();
+			var param4= $('#absence').val();
+			var param5= $('#sup').val();
+			var param6= $('#revision').val();
+
+ 			jQuery.get('/regression?param1='+param1+'&param2='+param2, function( data) {
+			document.getElementById("ResultNoteS2").innerHTML=String("&nbsp;&nbsp; une note de "+param2 +" conduit à une probabilité d'echec de "+ Math.round((0.02071321*parseFloat(param1)+parseFloat(data.resultS2))*100)/100+ " avec une précision de "+ Math.round(parseFloat(data.precisionS2)*100)/100); 
+	
+
+});
+}
+function regressionS3(){
+
+			var param1 = $('#noteS1').val();
+			var param2= $('#noteS2').val();
+			var param3= $('#noteS3').val();
+			var param4= $('#absence').val();
+			var param5= $('#sup').val();
+			var param6= $('#revision').val();
+
+ 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3, function( data) {
+			document.getElementById("ResultNoteS3").innerHTML=String("&nbsp;&nbsp; une note de "+param3 +" conduit à une probabilité d'echec de "+ Math.round((0.01056987*parseFloat(param1)+0.01505901*parseFloat(param2)+parseFloat(data.resultS3))*100)/100+ " avec une précision de "+ Math.round(parseFloat(data.precisionS3)*100)/100); 
+	
+
+});
+}
+
+function regressionAbsence(){
+
+			var param1 = $('#noteS1').val();
+			var param2= $('#noteS2').val();
+			var param3= $('#noteS3').val();
+			var param4= $('#absence').val();
+			var param5= $('#sup').val();
+			var param6= $('#revision').val();
+
+ 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4, function( data) {
+			document.getElementById("ResultAbsence").innerHTML=String("&nbsp;&nbsp;"+ param4 +" heures d'absence conduisent à une probabilité de "+ Math.round((0.01036732*parseFloat(param1)+0.01505708*parseFloat(param2)+0.02302053*parseFloat(param3)+parseFloat(data.resultAbsence))*100)/100+ " avec une précision de "+ "0.58"); 
+	
+
+});
+}
+
+function regressionRevision(){
+
+			var param1 = $('#noteS1').val();
+			var param2= $('#noteS2').val();
+			var param3= $('#noteS3').val();
+			var param4= $('#absence').val();
+		document.getElementById("revision").selectedIndex=1;
+			var param5= document.getElementById("revision").selectedIndex
+			var param6= $('#sup').val();
+
+ 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4 + '&param5=' + param5, function( data) {
+
+			document.getElementById("ResultRevision").innerHTML=String("&nbsp;&nbsp;une probabilité d'echec de " + Math.round(parseFloat((0.01025521*parseFloat(param1) + 0.01423517*parseFloat(param2) + 0.01953465*parseFloat(param3) + -0.02482647*parseFloat(param4) + 0.02235694*(parseFloat(param5)+1)))*100)/100 + " avec une précision de 0.67"); 
+	
+
+});
+}
+
+function regressionSup(){
+
+			var param1 = $('#noteS1').val();
+			var param2= $('#noteS2').val();
+			var param3= $('#noteS3').val();
+			var param4= $('#absence').val();
+			var param5= $('#sup').val();
+			var param6= $('#revision').val();
+
+ 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4 + '&param5=' + param5 + '&param6=' + param6, function( data) {
+			document.getElementById("sup").innerHTML=String("&nbsp;&nbsp;" + data.resultSup); 
+	
+
+});
+}
+
+</script>
+<!-- /js for banner -->
+<!-- /js files -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="assets/global/plugins/respond.min.js"></script>
+<script src="assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script src="assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="assets/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<script src="assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+<script type="text/javascript" src="assets/global/plugins/clockface/js/clockface.js"></script>
+<script type="text/javascript" src="assets/global/plugins/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="assets/global/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="assets/global/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+ 
+<!--script type="text/javascript" src="assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js"></script-->
+
+
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+<script src="assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+<script src="assets/admin/pages/scripts/components-pickers.js"></script>
+<script src="assets/admin/pages/scripts/components-dropdowns.js"></script>
+ 
+<!-- END PAGE LEVEL SCRIPTS -->
+ 
+<!-- END JAVASCRIPTS -->
+</body>
+</html>		
