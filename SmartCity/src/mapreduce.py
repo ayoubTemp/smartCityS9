@@ -168,8 +168,8 @@ for i in range(0, cpt_ftouhi):
                      ])
 
 
-#print datanouri.collect()
 
-#print cpt_ghanem
+
+
 
 
