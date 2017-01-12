@@ -137,19 +137,19 @@
 </tr>
 
 <tr>
-<td><label class="col-md-12 control-label">heures d'absence</label></td>
+<td><label class="col-md-12 control-label">heures d'absence de l'année</label></td>
 <td><input type="text" class="form-control" placeholder="absences"  name="absence" id="absence"></td>
 <td><button id="d" class="btn green" onClick="regressionAbsence()">Submit</button></td>
 <td><label id="ResultAbsence"></label></td>
 </tr>
 
 <tr>
-<td><label class="col-md-12 control-label">heures de révision</label></td>
+<td><label class="col-md-12 control-label">heures de révision(par semaine)</label></td>
 <td><select class="form-control input-large select2me" name="revision" id="revision" data-placeholder="Select...">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
+<option value="1">inférieur à 2h </option>
+<option value="2">entre 2h et 5h</option>
+<option value="3">entre 5h et 10h</option>
+<option value="4">supérieur à 10h</option>
 </select></td>
 <td><button id="e" class="btn green" onClick="regressionRevision()">Submit</button></td>
 <td><label id="ResultRevision"></label></td>
@@ -159,8 +159,8 @@
 
 <td><label class="col-md-12 control-label">Cours suplémentaires</label></td>
 <td><select class="form-control input-large select2me" name="sup" id="sup" data-placeholder="Select...">
-<option value="oui">OUI</option>
-<option value="non">NON</option>
+<option value="oui">NON</option>
+<option value="non">OUI</option>
 </select></td>
 <td><button id="f" class="btn green" onClick="regressionSup()">Submit</button></td>
 <td><label id="ResultSup"></label></td>
@@ -286,36 +286,23 @@
      });
  </script>
 <script language="javascript">
-// Asynchronous read
 
 function regressionS1(){
 
 			
 			var param1 = $('#noteS1').val();
-
-			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
-			var param4= $('#absence').val();
-			var param5= $('#sup').val();
-			var param6= $('#revision').val();
-
  			jQuery.get('/regression?param1='+param1, function( data) {
-			document.getElementById("ResultNoteS1").innerHTML=String("&nbsp;&nbsp; une note de "+param1 +" conduit à une probabilité d'echec de "+ Math.round(parseFloat(data.resultS1)*100)/100+ " avec une précision de "+ Math.round(parseFloat(data.precisionS1)*100)/100); 
-	
+			document.getElementById("ResultNoteS1").innerHTML=String("&nbsp;&nbsp; une note de "+param1 +" conduit à une probabilité d'echec de "+ data.resultS1.toFixed(2)+ " avec une précision de "+ data.precisionS1.toFixed(2)); 
+
 
 });
 }
 function regressionS2(){			
 			var param1 = $('#noteS1').val();
-
 			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
-			var param4= $('#absence').val();
-			var param5= $('#sup').val();
-			var param6= $('#revision').val();
 
  			jQuery.get('/regression?param1='+param1+'&param2='+param2, function( data) {
-			document.getElementById("ResultNoteS2").innerHTML=String("&nbsp;&nbsp; une note de "+param2 +" conduit à une probabilité d'echec de "+ Math.round((0.02071321*parseFloat(param1)+parseFloat(data.resultS2))*100)/100+ " avec une précision de "+ Math.round(parseFloat(data.precisionS2)*100)/100); 
+			document.getElementById("ResultNoteS2").innerHTML=String("&nbsp;&nbsp; les notes des deux semestres ("+param1+", "+param2 +") conduisent à une probabilité d'echec de "+ data.resultS2.toFixed(2)+ " avec une &nbsp; &nbsp;&nbsp;précision de "+ data.precisionS2.toFixed(2)); 
 	
 
 });
@@ -325,12 +312,9 @@ function regressionS3(){
 			var param1 = $('#noteS1').val();
 			var param2= $('#noteS2').val();
 			var param3= $('#noteS3').val();
-			var param4= $('#absence').val();
-			var param5= $('#sup').val();
-			var param6= $('#revision').val();
 
  			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3, function( data) {
-			document.getElementById("ResultNoteS3").innerHTML=String("&nbsp;&nbsp; une note de "+param3 +" conduit à une probabilité d'echec de "+ Math.round((0.01056987*parseFloat(param1)+0.01505901*parseFloat(param2)+parseFloat(data.resultS3))*100)/100+ " avec une précision de "+ Math.round(parseFloat(data.precisionS3)*100)/100); 
+			document.getElementById("ResultNoteS3").innerHTML=String("&nbsp;&nbsp; la moyenne générale de l'année "+((parseFloat(param1)+parseFloat(param2)+parseFloat(param3))/3).toFixed(2)+" conduit à une probabilité d'echec de "+ data.resultS3.toFixed(2)+ " avec une &nbsp; &nbsp; &nbsp;&nbsp précision de "+ data.precisionS3.toFixed(2)); 
 	
 
 });
@@ -342,11 +326,8 @@ function regressionAbsence(){
 			var param2= $('#noteS2').val();
 			var param3= $('#noteS3').val();
 			var param4= $('#absence').val();
-			var param5= $('#sup').val();
-			var param6= $('#revision').val();
-
  			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4, function( data) {
-			document.getElementById("ResultAbsence").innerHTML=String("&nbsp;&nbsp;"+ param4 +" heures d'absence conduisent à une probabilité de "+ Math.round((0.01036732*parseFloat(param1)+0.01505708*parseFloat(param2)+0.02302053*parseFloat(param3)+parseFloat(data.resultAbsence))*100)/100+ " avec une précision de "+ "0.58"); 
+			document.getElementById("ResultAbsence").innerHTML=String("&nbsp;&nbsp;"+ param4 +" heures d'absence par an conduisent à une probabilité de "+ data.resultAbsence.toFixed(2)+ " avec une précision de "+data.precisionAbsence.toFixed(2)); 
 	
 
 });
@@ -358,13 +339,11 @@ function regressionRevision(){
 			var param2= $('#noteS2').val();
 			var param3= $('#noteS3').val();
 			var param4= $('#absence').val();
-		document.getElementById("revision").selectedIndex=1;
-			var param5= document.getElementById("revision").selectedIndex
-			var param6= $('#sup').val();
+			var param5= document.getElementById("revision").selectedIndex;
 
  			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4 + '&param5=' + param5, function( data) {
 
-			document.getElementById("ResultRevision").innerHTML=String("&nbsp;&nbsp;une probabilité d'echec de " + Math.round(parseFloat((0.01025521*parseFloat(param1) + 0.01423517*parseFloat(param2) + 0.01953465*parseFloat(param3) + -0.02482647*parseFloat(param4) + 0.02235694*(parseFloat(param5)+1)))*100)/100 + " avec une précision de 0.67"); 
+			document.getElementById("ResultRevision").innerHTML=String("&nbsp;&nbsp; le nombre des heures de révision par semaine conduit à une probabilité d'echec de " + data.resultRevision.toFixed(2) + " avec une précision de" + data.precisionRevision.toFixed(2)); 
 	
 
 });
@@ -376,14 +355,17 @@ function regressionSup(){
 			var param2= $('#noteS2').val();
 			var param3= $('#noteS3').val();
 			var param4= $('#absence').val();
-			var param5= $('#sup').val();
-			var param6= $('#revision').val();
+			var param5= document.getElementById("revision").selectedIndex;
+			var param6= document.getElementById("sup").selectedIndex;
 
  			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4 + '&param5=' + param5 + '&param6=' + param6, function( data) {
-			document.getElementById("sup").innerHTML=String("&nbsp;&nbsp;" + data.resultSup); 
-	
+			document.getElementById("ResultSup").innerHTML=String("&nbsp;&nbsp; une probabilité d'echec de " + data.resultSup.toFixed(2) + " avec une précision de "+ data.precisionSup.toFixed(2)); 
+	alert("l'élève a une probabilité d'echec de "+ data.resultSup.toFixed(2) + " avec une précision de " + data.precisionSup.toFixed(2));
 
 });
+
+
+
 }
 
 </script>
