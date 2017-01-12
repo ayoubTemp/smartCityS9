@@ -125,6 +125,45 @@ License: You must have a valid license purchased only from themeforest(the above
                 </p>
             </div>
         </div>
+
+
+        <!-- BEGIN Profil CONTENT-->
+        <div class="row margin-bottom-20">
+           	<div class="col-md-2 col-sm-5">
+			<!-- BEGIN PROFILE SIDEBAR -->
+			<div class="profile-sidebar">
+				<!-- PORTLET MAIN -->
+				<div class="portlet light profile-sidebar-portlet">
+					<!-- SIDEBAR USERPIC -->
+					<div class="profile-userpic">
+						<img id="imageprofil" class="img-responsive" alt="">
+						<!--img id="imageprofil" class="img-responsive" alt=""-->
+					</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+					
+				
+				<!-- END MENU -->
+				</div>
+			<!-- END PORTLET MAIN -->
+			<!-- PORTLET MAIN -->
+
+
+			<!-- END PROFILE CONTENT -->
+			</div>
+			</div>
+			<div class="col-md-6">
+						<div id="example2" >
+									
+							
+
+						</div>
+					</div>
+				
+		
+		</div>		
+		
+
 <div class="row">
 <div class="col-md-6">
 
@@ -322,16 +361,53 @@ License: You must have a valid license purchased only from themeforest(the above
                             return sParameterName[1];
                         }}};
  		        var name= GetURLParameter('name');
+				var prenom = GetURLParameter('prenom');
+				
+				
+				$.getJSON('/events?name='+name+'&prenom='+prenom , function(dataProfil) {
+				//var profilJson=dataProfil;
+				//var descriptif="je suis giiiii ";
+				if(name=='nouri')
+				$('#example2').append(name + '   ' + prenom + ', ' + '6 ans et sa capacité de paiement est 15e');
+				if(name=='ghanem')
+				$('#example2').append(name + '   ' + prenom + ', ' + '21 ans et désire voir les evenements gratuit');
+				if(name=='ftouhi')
+				$('#example2').append(name + '   ' + prenom + ', ' + '22 ans et désire voir les evenements gratuit');
+				if(name=='bahssou')
+				$('#example2').append(name + '   ' + prenom + ', ' + '22 ans et sa capacité de paiement est 30e');
+				//var div = document.getElementById("example2");  
+				//div.textContent = descriptif; 
+				})
+				
+				
+				
+				
                 $.get( '/events?name='+name , function( data) {
+				
+				
+				
+				
+				
+				
+				
+				
+				
                     //the events are in the json response property 'events'
+					
                     var eventsJson=data;
                     var content = " <thead>  <tr> <th>nom</th>   <th>endroit</th> <th>categorie</th> <th>start</th> <th>end</th> </tr>  </thead>  <tbody> ";
-
+					
+					
                     eventsJson.forEach(function(row){
                         content +="<tr><td>"+row.titre+"</td><td>"+row.commune+ "</td><td>"+row.categorie+
                                 "</td><td>"+row.jourMin+"</td><td>"+row.jourMax+"</td></tr>"
                     })
                     content+="</tbody>"
+					var prenom = GetURLParameter('prenom');
+					
+					document.getElementById('imageprofil').src='assets/admin/pages/media/profile/'+prenom+'.jpg';
+					
+					
 
 
                     $('#example').append(content);

@@ -87,6 +87,20 @@ app.get("/eventsOld",  function(req, res) {
     }
 });
 
+
+/*app.get("/events",  function(req, res) {
+   ///check if the user specified the coordinates
+   
+     var name=req.query.name;
+     fs.readFile('./dataModel/eventfull city/profil_'+name+'.json', 'utf8', function (err, dataProfil) {
+  if (err) throw err;
+  events = JSON.parse(dataProfil);
+ res.json(events);
+});
+     
+});
+*/
+
 app.get("/events",  function(req, res) {
    ///check if the user specified the coordinates
    
@@ -98,6 +112,8 @@ app.get("/events",  function(req, res) {
 });
      
 });
+
+
 //get the most used words  on the website
 app.get('/getWordList', function(req, res){
 
