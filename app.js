@@ -225,6 +225,18 @@ obj.precisionSup=precisionSup;
 res.json(obj);
 });
 
+app.get("/smartParking",  function(req, res) {
+var param1=req.query.param1;
+var param2=req.query.param2;
+var param3=req.query.param3;
+var obj = {};
+obj.param1=param1;
+obj.param2=param2;
+obj.param3=param3;
+res.json(obj);
+
+});
+
 //get the most used words  on the website
 app.get('/getWordList', function(req, res){
 

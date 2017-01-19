@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Régression de l'élève</title>
+    <title>Real-time parking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -51,6 +51,7 @@
 </head>
 <body>
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
 <!-- navigation -->
 <div class="navbar-wrapper">
     <div class="container">
@@ -105,7 +106,7 @@
         <div class="portlet-title">
           <div class="caption">
             <i class="icon-equalizer font-red-sunglo"></i>
-            <span class="caption-subject font-red-sunglo bold uppercase">info élève</span>
+            <span class="caption-subject font-red-sunglo bold uppercase">Info parkings</span>
 
           </div>
 
@@ -116,124 +117,39 @@
 <table>
 
 <tr>
-<td><label class="col-md-12 control-label">note 1er semestre</label></td>
-<td><input type="text" class="form-control" placeholder="note S1" name="noteS1" id="noteS1"></td>
-<td><button id="a" class="btn green" onClick="regressionS1()">Submit</button></td>
-<td><label id="probaS1"></label></td>
-<td><label id="ResultNoteS1"></label></td>
-<td><label id="preciS1"></label></td>
-<td><label id="ResultPreciS1"></label></td>
+<td><label class="control-label col-md-12">la date</label></td>
+<td><select class="form-control input-large select2me" name="jour" id="jour" data-placeholder="Select...">
+<option value="lundi">Lundi</option>
+<option value="mardi">Mardi</option>
+<option value="mercredi">Mercredi</option>
+<option value="jeudi">Jeudi</option>
+<option value="vendredi">Vendredi</option>
+<option value="dimanche">Dimanche</option>
 </tr>
 
 <tr>
-<td><label class="col-md-12 control-label">note 2ème semestre</label></td>
-<td><input type="text" class="form-control" placeholder="note S2" name="noteS2" id="noteS2"></td>
-<td><button id="b" class="btn green" onClick="regressionS2()">Submit</button></td>
-<td><label id="probaS2"></label></td>
-<td><label id="ResultNoteS2"></label></td>
-<td><label id="preciS2"></label></td>
-<td><label id="ResultPreciS2"></label></td>
+<td><label class="col-md-12 control-label">lieu de départ</label></td>
+<td><input type="text" class="form-control" placeholder="lieu départ" name="lieu" id="lieu"></td>
 </tr>
 
+
 <tr>
-<td><label class="col-md-12 control-label">note 3ème semestre</label></td>
-<td><input type="text" class="form-control" placeholder="note S3" name="noteS3" id="noteS3"></td>
-<td><button id="c" class="btn green" onClick="regressionS3()">Submit</button></td>
-<td><label id="probaS3"></label></td>
-<td><label id="ResultNoteS3"></label></td>
-<td><label id="preciS3"></label></td>
-<td><label id="ResultPreciS3"></label></td>
+<td><label class="col-md-12 control-label">heure d'arrivée</label></td>
+<td><input type="text" class="form-control" placeholder="heure" name="heure" id="heure"></td>
 </tr>
+<tr><td><label class="col-md-12 control-label"></label></td></tr>
+
+
 
 <tr>
-<td><label class="col-md-12 control-label">heures d'absence de l'année</label></td>
-<td><input type="text" class="form-control" placeholder="absences"  name="absence" id="absence"></td>
-<td><button id="d" class="btn green" onClick="regressionAbsence()">Submit</button></td>
-<td><label id="probaAbsence"></label></td>
-<td><label id="ResultAbsence"></label></td>
-<td><label id="preciAbsence"></label></td>
-<td><label id="ResultPreciAbsence"></label></td>
-</tr>
-
-<tr>
-<td><label class="col-md-12 control-label">heures de révision(par semaine)</label></td>
-<td><select class="form-control input-large select2me" name="revision" id="revision" data-placeholder="Select...">
-<option value="1">inférieur à 2h </option>
-<option value="2">entre 2h et 5h</option>
-<option value="3">entre 5h et 10h</option>
-<option value="4">supérieur à 10h</option>
-</select></td>
-<td><button id="e" class="btn green" onClick="regressionRevision()">Submit</button></td>
-<td><label id="probaRevision"></label></td>
-<td><label id="ResultRevision"></label></td>
-<td><label id="preciRevision"></label></td>
-<td><label id="ResultPreciRevision"></label></td>
-</tr>
-
-<tr>
-
-<td><label class="col-md-12 control-label">Cours suplémentaires</label></td>
-<td><select class="form-control input-large select2me" name="sup" id="sup" data-placeholder="Select...">
-<option value="oui">NON</option>
-<option value="non">OUI</option>
-</select></td>
-<td><button id="f" class="btn green" onClick="regressionSup()">Submit</button></td>
-<td><label id="probaSup"></label></td>
-<td><label id="ResultSup"></label></td>
-<td><label id="preciSup"></label></td>
-<td><label id="ResultPreciSup"></label></td>
+<td><label class="col-md-12 control-label"></label></td>
+<td><button id="d" class="btn green" onClick="parking()">Submit</button></td>
 </tr>
 
 </table>
 
-   <!--<tr>
-       <td><label class="col-md-3 control-label">absences</label></td>
-
-       <td><input type="text" class="form-control" placeholder="param2"  name="param2" id="absence"></td>
-<td><button id="b" class="btn green" onClick="regression2()">Submit</button></td>
-<td><label id="absenceResult"></label></td>
-
-   </tr>!-->
-
-
-              <!--div class="form-body">
-
-              <div class="form-group">
-                <label class="col-md-3 control-label" >studyTime</label>
-                <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="param1" name="param1" id="Study">
-		 
-                </div>
-              </div>
-     
-              <div class="form-group ">
-                <label class="col-md-3 control-label">absences</label>
-                <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="param2"  name="param2" id="absence">
-                </div>
-              </div>
-
-	      <div class="form-group ">
-                <label class="col-md-3 control-label">notes</label>
-                <div class="col-md-4">
-                  <input type="text" class="form-control" placeholder="param3" name="param3" id="note">
-                </div>
-              </div>
-           
-
-
-
-            </div>
-            <div class="form-actions">
-              <div class="row">
-                <div class="col-md-offset-3 col-md-9">
-                  <button  class="btn green" onClick="regression()">Submit</button>
-           
-                </div>
-              </div>
-            </div-->
+   
           
-          <!-- END FORM-->
         </div>
       </div>
 
@@ -305,117 +221,23 @@
  </script>
 <script language="javascript">
 
-function regressionS1(){
+function parking(){
+			var param1 = document.getElementById("jour").selectedIndex;
+			var param2 = $('#lieu').val();
+			var param3 = $('#heure').val();
+ 			jQuery.get('/smartParking?param1='+param1+'&param2='+param2 +'&param3='+param3, function( data) {
 
-			
-			var param1 = $('#noteS1').val();
- 			jQuery.get('/regression?param1='+param1, function( data) {
-
-document.getElementById("probaS1").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
-document.getElementById("ResultNoteS1").innerHTML= String("&nbsp;"+ data.resultS1.toFixed(2)); 
-document.getElementById('ResultNoteS1').style.color='red';
-document.getElementById("preciS1").innerHTML=String("&nbsp;&nbsp; Précision: ");
-document.getElementById("ResultPreciS1").innerHTML= String("&nbsp;"+ data.precisionS1.toFixed(2)); 
-document.getElementById('ResultPreciS1').style.color='green';
-
+alert(param1 + param2 + param3);
 });
 }
-function regressionS2(){			
-			var param1 = $('#noteS1').val();
-			var param2= $('#noteS2').val();
-
- 			jQuery.get('/regression?param1='+param1+'&param2='+param2, function( data) {
-document.getElementById("probaS2").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
-document.getElementById("ResultNoteS2").innerHTML= String("&nbsp;"+ data.resultS2.toFixed(2)); 
-document.getElementById('ResultNoteS2').style.color='red';
-document.getElementById("preciS2").innerHTML=String("&nbsp;&nbsp; Précision: ");
-document.getElementById("ResultPreciS2").innerHTML= String("&nbsp;"+ data.precisionS2.toFixed(2)); 
-document.getElementById('ResultPreciS2').style.color='green';
-
-});
-}
-function regressionS3(){
-
-			var param1 = $('#noteS1').val();
-			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
-
- 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3, function( data) {
-document.getElementById("probaS3").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
-document.getElementById("ResultNoteS3").innerHTML= String("&nbsp;"+ data.resultS3.toFixed(2)); 
-document.getElementById('ResultNoteS3').style.color='red';
-document.getElementById("preciS3").innerHTML=String("&nbsp;&nbsp; Précision: ");
-document.getElementById("ResultPreciS3").innerHTML= String("&nbsp;"+ data.precisionS3.toFixed(2)); 
-document.getElementById('ResultPreciS3').style.color='green';
-	
-
-});
-}
-
-function regressionAbsence(){
-
-			var param1 = $('#noteS1').val();
-			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
-			var param4= $('#absence').val();
- 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4, function( data) {
-document.getElementById("probaAbsence").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
-document.getElementById("ResultAbsence").innerHTML= String("&nbsp;"+ data.resultAbsence.toFixed(2)); 
-document.getElementById('ResultAbsence').style.color='red';
-document.getElementById("preciAbsence").innerHTML=String("&nbsp;&nbsp; Précision: ");
-document.getElementById("ResultPreciAbsence").innerHTML= String("&nbsp;"+ data.precisionAbsence.toFixed(2)); 
-document.getElementById('ResultPreciAbsence').style.color='green'; 
-	
-
-});
-}
-
-function regressionRevision(){
-
-			var param1 = $('#noteS1').val();
-			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
-			var param4= $('#absence').val();
-			var param5= document.getElementById("revision").selectedIndex;
-
- 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4 + '&param5=' + param5, function( data) {
-
-document.getElementById("probaRevision").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
-document.getElementById("ResultRevision").innerHTML= String("&nbsp;"+ data.resultRevision.toFixed(2)); 
-document.getElementById('ResultRevision').style.color='red';
-document.getElementById("preciRevision").innerHTML=String("&nbsp;&nbsp; Précision: ");
-document.getElementById("ResultPreciRevision").innerHTML= String("&nbsp;"+ data.precisionRevision.toFixed(2)); 
-document.getElementById('ResultPreciRevision').style.color='green';
-	
-
-});
-}
-
-function regressionSup(){
-
-			var param1 = $('#noteS1').val();
-			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
-			var param4= $('#absence').val();
-			var param5= document.getElementById("revision").selectedIndex;
-			var param6= document.getElementById("sup").selectedIndex;
-
- 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4 + '&param5=' + param5 + '&param6=' + param6, function( data) {
-document.getElementById("probaSup").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
-document.getElementById("ResultSup").innerHTML= String("&nbsp;"+ data.resultSup.toFixed(2)); 
-document.getElementById('ResultSup').style.color='red';
-document.getElementById("preciSup").innerHTML=String("&nbsp;&nbsp; Précision: ");
-document.getElementById("ResultPreciSup").innerHTML= String("&nbsp;"+ data.precisionSup.toFixed(2)); 
-document.getElementById('ResultPreciSup').style.color='green';
-alert("La probabilité d'échec de cet élève est: " + data.resultSup.toFixed(2)+ " avec une précision de " + data.precisionSup.toFixed(2));
-
-});
-
-
-
-}
-
 </script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.datepick').datepicker({ dateFormat: "yy-mm-dd"});
+    });
+</script>
+
 <!-- /js for banner -->
 <!-- /js files -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
