@@ -7,7 +7,7 @@ var direction;
 initialize = function(){
  
   // Correspond au coordonnées de Lille
-  var latLng = new google.maps.LatLng(44.83225043166308, -0.5804085731506348); 
+  var latLng = new google.maps.LatLng(56.15659, 10.21353); 
 
   var myOptions = {
     zoom      : 14, // Zoom par défaut
@@ -19,10 +19,18 @@ initialize = function(){
   map      = new google.maps.Map(document.getElementById('map'), myOptions);
   panel    = document.getElementById('panel');
 
+                $.get( '/parking', function( data) {
+        
+        
+        var eventsJson=data;
+        
+  for (var i = 0; i < eventsJson.length; i++) {
+        
+    var latLng = new google.maps.LatLng(eventsJson[i].lat,eventsJson[i].long);
   var marker = new google.maps.Marker({
     position : latLng,
     map      : map,
-    title    : "Bordeaux"
+    title    : eventsJson[i].name
     //icon     : "marker_bordeaux.jpg" // Chemin de l'image du marqueur pour surcharger celui par défaut
   });
 
@@ -31,17 +39,21 @@ initialize = function(){
       '<div id="tabs">',
 
       '<ul>',
-        '<li><a href="#tab-1"><span>Geographie</span></a></li>',
-        '<li><a href="#tab-2"><span>Specialite</span></a></li>',
+        '<li><a href="#tab-1"><span>'+eventsJson[i].name+'</span></a></li>',
+        
       '</ul>',
 
       '<div id="tab-1">',
-        '<h3>Bordeaux</h3><p>Bordeaux est une commune du Sud-Ouest de la France, préfecture du département de la Gironde et chef-lieu de la région Nouvelle-Aquitaine.Capitale de l\'ancienne Guyenne, Bordeaux, située en bordure des Landes de Gascogne, fait partie de la Gascogne.En 2013, la commune est la neuvième commune de France par sa population avec 243 626 habitants, mais son agglomération est classée septième avec 876 714 habitants1. L\'aire urbaine de Bordeaux compte quant à elle 1 178 335 habitants en 20132, ce qui en fait la cinquième aire urbaine de France après celles de Paris, Lyon, Marseille - Aix et Toulouse et devant Lille, Nice et Nantes. Bordeaux est par ailleurs la principale commune de la métropole « Bordeaux Métropole », qui rassemble 28 communes et 737 492 habitants .</p>',
-      '</div>',
-      '<div id="tab-2">',
-       '<h3>Bordeaux</h3><p>La ville est connue dans le monde entier pour les vins de Bordeaux et les vignobles du Bordelais, surtout depuis le XVIIIe siècle, qui fut un véritable âge d\'or. En 1957, Bordeaux est récompensée du prix de l\'Europe, conjointement avec Turin. En juin 2007, une partie de la ville, le port de la Lune, est inscrite par le Comité du patrimoine mondial, désigné par l\'assemblée générale de l’UNESCO, sur la Liste du patrimoine mondial.</p>',
-      '</div>',
+         
+         '<ul>',
+        '<li> adresse:'+eventsJson[i].street +'</li>',
+        '<li>nombre de place: '+eventsJson[i].totalspaces+'</li>',
+        '<li>nombre de place libre: '+eventsJson[i].availableSpaces+'</li>',
+        '  <button onclick="javascript:calculate('+eventsJson[i].lat+','+eventsJson[i].long+')">itinéraire</button>',
+      '</ul>',
 
+      '</div>',
+    
       '</div>',
       '</div>'
   ].join('');
@@ -50,10 +62,12 @@ initialize = function(){
     content  : contentMarker,
     position : latLng
   });
-  
+  /*
   google.maps.event.addListener(marker, 'click', function() {
     infoWindow.open(map,marker);
-  });
+  });*/
+  // add an event listener for this marker
+bindInfoWindow(marker, map, infoWindow); 
   
   google.maps.event.addListener(infoWindow, 'domready', function(){ // infoWindow est biensûr notre info-bulle
     jQuery("#tabs").tabs();
@@ -64,16 +78,17 @@ initialize = function(){
     map   : map,
     panel : panel // Dom element pour afficher les instructions d'itinéraire
   });
-
+}
+  });
 };
 
 
 
-calculate = function(){
+calculate = function(lat,long){
     //origin      = document.getElementById('origin').value; // Le point départ
     //destination = document.getElementById('destination').value; // Le point d'arrivé
-    origin="Bordeaux"
-    destination="toulouse"
+    origin=new google.maps.LatLng(56.15659, 10.21353); 
+    destination= new google.maps.LatLng(lat,long);
     if(origin && destination){
         var request = {
             origin      : origin,
@@ -90,4 +105,11 @@ calculate = function(){
 };
 
 initialize();
-calculate();
+//calculate();
+ 
+   function bindInfoWindow(marker, map, infowindow) {
+    marker.addListener('click', function() {
+       
+        infowindow.open(map, this);
+    });
+} 

@@ -143,7 +143,9 @@
 
 <tr>
 <td><label class="col-md-12 control-label"></label></td>
+  
 <td><button id="d" class="btn green" onClick="parking()">Submit</button></td>
+
 </tr>
 
 </table>
@@ -225,10 +227,11 @@ function parking(){
 			var param1 = document.getElementById("jour").selectedIndex;
 			var param2 = $('#lieu').val();
 			var param3 = $('#heure').val();
- 			jQuery.get('/smartParking?param1='+param1+'&param2='+param2 +'&param3='+param3, function( data) {
+ 			//jQuery.get('/smartparking?param1='+param1+'&param2='+param2 +'&param3='+param3, function( data) {
 
-alert(param1 + param2 + param3);
-});
+//alert(param1 + param2 + param3);	
+document.location.href="/parking.html";
+//});
 }
 </script>
 

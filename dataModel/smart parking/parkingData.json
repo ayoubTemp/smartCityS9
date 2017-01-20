@@ -1,0 +1,65 @@
+[{
+"name":	"NORREPORT",
+"lat":56.16184,
+"long":10.21284,
+"street":"Kærlighedsstien",
+"totalspaces":65,
+"availableSpaces":5,
+"hasPlace":true
+},{
+"name":	"SKOLEBAKKEN",
+"lat":56.15659,
+"long":10.21353,
+"street":"Skolebakken",
+"totalspaces":512,
+"availableSpaces":5,
+"hasPlace":true
+},{
+"name":	"SCANDCENTER",
+"lat":56.1527,
+"long":10.197,
+"street":"Margrethepladsen",
+"totalspaces":1240,
+"availableSpaces":5,
+"hasPlace":true
+},{
+"name":	"BRUUNS",
+"lat":56.14951,
+"long":10.20596,
+"street":"Værkmestergade",
+"totalspaces":953,
+"availableSpaces":5,
+"hasPlace":true
+},{
+"name":	"BUSGADEHUSET",
+"lat":56.15561,
+"long":10.206,
+"street":"Frederiksgade",
+"totalspaces":130,
+"availableSpaces":5,
+"hasPlace":true
+},{
+"name":	"MAGASIN",
+"lat":56.15679,
+"long":10.2049,
+"street":"Åboulevarden",
+"totalspaces":400,
+"availableSpaces":5,
+"hasPlace":true
+},{
+"name":	"KALKVAERKSVEJ",
+"lat":56.14952,
+"long":10.21149,
+"street":"Kalkværksvej",
+"totalspaces":210,
+"availableSpaces":5,
+"hasPlace":true
+},{
+"name":	"SALLING",
+"lat":56.15441,
+"long":10.20818,
+"street":"Østergade",
+"totalspaces":700,
+"availableSpaces":5,
+"hasPlace":true
+}]

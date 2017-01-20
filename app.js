@@ -51,9 +51,18 @@ app.get('/offTrackStudentsFormHandler',function(req, res){
 });
 app.get('/smartParking',function(req, res){
     
-    res.render('parking.html')
+    res.render('parkingSubmitter.html')
 });
-
+app.get("/parking",  function(req, res) {
+   ///check if the user specified the coordinates
+   
+   //  var name=req.query.name;
+     fs.readFile('./dataModel/smart parking/parkingData.json', 'utf8', function (err, data) {
+  if (err) throw err;
+  events = JSON.parse(data);
+ res.json(events);
+});
+});
 app.get("/eventsOld",  function(req, res) {
    ///check if the user specified the coordinates
     if (!req.query.lat || !req.query.lng) {
@@ -225,16 +234,16 @@ obj.precisionSup=precisionSup;
 res.json(obj);
 });
 
-app.get("/smartParking",  function(req, res) {
-var param1=req.query.param1;
+app.get("/smartparking",  function(req, res) {
+/*var param1=req.query.param1;
 var param2=req.query.param2;
 var param3=req.query.param3;
 var obj = {};
 obj.param1=param1;
 obj.param2=param2;
-obj.param3=param3;
-res.json(obj);
-
+obj.param3=param3;*/
+//res.json(obj);
+//res.render('parking.html');
 });
 
 //get the most used words  on the website
