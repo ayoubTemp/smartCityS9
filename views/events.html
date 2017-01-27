@@ -112,19 +112,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <!-- END PAGE HEADER-->
         <!-- BEGIN PAGE CONTENT-->
-        <div class="row margin-bottom-20">
-            <div class="col-md-12">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
-            </div>
-        </div>
+        
 
 
         <!-- BEGIN Profil CONTENT-->
@@ -135,10 +123,10 @@ License: You must have a valid license purchased only from themeforest(the above
 				<!-- PORTLET MAIN -->
 				<div class="portlet light profile-sidebar-portlet">
 					<!-- SIDEBAR USERPIC -->
-					<div class="profile-userpic">
+					<!--div class="profile-userpic">
 						<img id="imageprofil" class="img-responsive" alt="">
 						<!--img id="imageprofil" class="img-responsive" alt=""-->
-					</div>
+					<!--/div>
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 					
@@ -367,14 +355,14 @@ License: You must have a valid license purchased only from themeforest(the above
 				$.getJSON('/events?name='+name+'&prenom='+prenom , function(dataProfil) {
 				//var profilJson=dataProfil;
 				//var descriptif="je suis giiiii ";
-				if(name=='nouri')
+				/*if(name=='nouri')
 				$('#example2').append(name + '   ' + prenom + ', ' + '6 ans et sa capacité de paiement est 15e');
 				if(name=='ghanem')
 				$('#example2').append(name + '   ' + prenom + ', ' + '21 ans et désire voir les evenements gratuit');
 				if(name=='ftouhi')
 				$('#example2').append(name + '   ' + prenom + ', ' + '22 ans et désire voir les evenements gratuit');
 				if(name=='bahssou')
-				$('#example2').append(name + '   ' + prenom + ', ' + '22 ans et sa capacité de paiement est 30e');
+				$('#example2').append(name + '   ' + prenom + ', ' + '22 ans et sa capacité de paiement est 30e');*/
 				//var div = document.getElementById("example2");  
 				//div.textContent = descriptif; 
 				})
@@ -405,7 +393,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     content+="</tbody>"
 					var prenom = GetURLParameter('prenom');
 					
-					document.getElementById('imageprofil').src='assets/admin/pages/media/profile/'+prenom+'.jpg';
+					//document.getElementById('imageprofil').src='assets/admin/pages/media/profile/'+prenom+'.jpg';
 					
 					
 
