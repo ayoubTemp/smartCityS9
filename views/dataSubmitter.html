@@ -136,16 +136,6 @@
 </tr>
 
 <tr>
-<td><label class="col-md-12 control-label">note 3ème semestre</label></td>
-<td><input type="text" class="form-control" placeholder="note S3" name="noteS3" id="noteS3"></td>
-<td><button id="c" class="btn green" onClick="regressionS3()">Submit</button></td>
-<td><label id="probaS3"></label></td>
-<td><label id="ResultNoteS3"></label></td>
-<td><label id="preciS3"></label></td>
-<td><label id="ResultPreciS3"></label></td>
-</tr>
-
-<tr>
 <td><label class="col-md-12 control-label">heures d'absence de l'année</label></td>
 <td><input type="text" class="form-control" placeholder="absences"  name="absence" id="absence"></td>
 <td><button id="d" class="btn green" onClick="regressionAbsence()">Submit</button></td>
@@ -317,7 +307,6 @@ document.getElementById('ResultNoteS1').style.color='red';
 document.getElementById("preciS1").innerHTML=String("&nbsp;&nbsp; Précision: ");
 document.getElementById("ResultPreciS1").innerHTML= String("&nbsp;"+ data.precisionS1.toFixed(2)); 
 document.getElementById('ResultPreciS1').style.color='green';
-
 });
 }
 function regressionS2(){			
@@ -331,24 +320,6 @@ document.getElementById('ResultNoteS2').style.color='red';
 document.getElementById("preciS2").innerHTML=String("&nbsp;&nbsp; Précision: ");
 document.getElementById("ResultPreciS2").innerHTML= String("&nbsp;"+ data.precisionS2.toFixed(2)); 
 document.getElementById('ResultPreciS2').style.color='green';
-
-});
-}
-function regressionS3(){
-
-			var param1 = $('#noteS1').val();
-			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
-
- 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3, function( data) {
-document.getElementById("probaS3").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
-document.getElementById("ResultNoteS3").innerHTML= String("&nbsp;"+ data.resultS3.toFixed(2)); 
-document.getElementById('ResultNoteS3').style.color='red';
-document.getElementById("preciS3").innerHTML=String("&nbsp;&nbsp; Précision: ");
-document.getElementById("ResultPreciS3").innerHTML= String("&nbsp;"+ data.precisionS3.toFixed(2)); 
-document.getElementById('ResultPreciS3').style.color='green';
-	
-
 });
 }
 
@@ -356,9 +327,8 @@ function regressionAbsence(){
 
 			var param1 = $('#noteS1').val();
 			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
 			var param4= $('#absence').val();
- 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4, function( data) {
+ 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param4=' + param4, function( data) {
 document.getElementById("probaAbsence").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
 document.getElementById("ResultAbsence").innerHTML= String("&nbsp;"+ data.resultAbsence.toFixed(2)); 
 document.getElementById('ResultAbsence').style.color='red';
@@ -374,11 +344,10 @@ function regressionRevision(){
 
 			var param1 = $('#noteS1').val();
 			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
 			var param4= $('#absence').val();
 			var param5= document.getElementById("revision").selectedIndex;
 
- 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4 + '&param5=' + param5, function( data) {
+ 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param4=' + param4 + '&param5=' + param5, function( data) {
 
 document.getElementById("probaRevision").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
 document.getElementById("ResultRevision").innerHTML= String("&nbsp;"+ data.resultRevision.toFixed(2)); 
@@ -386,7 +355,6 @@ document.getElementById('ResultRevision').style.color='red';
 document.getElementById("preciRevision").innerHTML=String("&nbsp;&nbsp; Précision: ");
 document.getElementById("ResultPreciRevision").innerHTML= String("&nbsp;"+ data.precisionRevision.toFixed(2)); 
 document.getElementById('ResultPreciRevision').style.color='green';
-	
 
 });
 }
@@ -395,12 +363,11 @@ function regressionSup(){
 
 			var param1 = $('#noteS1').val();
 			var param2= $('#noteS2').val();
-			var param3= $('#noteS3').val();
 			var param4= $('#absence').val();
 			var param5= document.getElementById("revision").selectedIndex;
 			var param6= document.getElementById("sup").selectedIndex;
 
- 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param3='+param3 + '&param4=' + param4 + '&param5=' + param5 + '&param6=' + param6, function( data) {
+ 			jQuery.get('/regression?param1='+param1+'&param2='+param2+'&param4=' + param4 + '&param5=' + param5 + '&param6=' + param6, function( data) {
 document.getElementById("probaSup").innerHTML=String("&nbsp;&nbsp; Probabilité d'échec: ");
 document.getElementById("ResultSup").innerHTML= String("&nbsp;"+ data.resultSup.toFixed(2)); 
 document.getElementById('ResultSup').style.color='red';

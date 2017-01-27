@@ -126,19 +126,18 @@ app.get("/regression",  function(req, res) {
 var fs = require("fs");
 var param1=req.query.param1;
 var param2=req.query.param2;
-var param3=req.query.param3;
 var param4=req.query.param4;
 var param5=req.query.param5;
 var param6=req.query.param6;
 
 var obj = {};
 
-if(param1!=null && param2==null && param3==null && param4==null && param5==null && param6==null){
-var data = fs.readFileSync('./dataModel/off track student/Coeff-S1.txt').toString();
+if(param1!=null && param2==null && param4==null && param5==null && param6==null){
+var data = fs.readFileSync('./dataModel/off track student/S1.txt').toString();
 var tableau=data.toString().split("["); 
 var tableau1=tableau[1].toString().split("]");
 
-var resultS1 = parseFloat(tableau1[0])*parseFloat(param1);
+var resultS1 = parseFloat(tableau1[0])*parseFloat(param1) + parseFloat(tableau1[1]);
 obj.resultS1=resultS1;
 
 var data1 = fs.readFileSync('./dataModel/off track student/Precision-S1.txt').toString();
@@ -148,14 +147,14 @@ obj.precisionS1=precisionS1;
 }
 
 
-if(param1!=null && param2!=null && param3==null && param4==null && param5==null && param6==null){
-var data = fs.readFileSync('./dataModel/off track student/Coeff-S1&S2.txt').toString();
+if(param1!=null && param2!=null && param4==null && param5==null && param6==null){
+var data = fs.readFileSync('./dataModel/off track student/S1&S2.txt').toString();
 var tableau=data.toString().split("["); 
-var tableau1=tableau[1].toString().split(" ");
+var tableau1=tableau[2].toString().split(" ");
 
 var resultS1 = parseFloat(tableau1[0])*parseFloat(param1);
-var tableau2 = tableau1[1].toString().split("]");
-var resultS2 = parseFloat(resultS1)+parseFloat(tableau2[0])*parseFloat(param2);
+var tableau2=tableau1[1].toString().split("]");
+var resultS2 = parseFloat(resultS1)+parseFloat(tableau2[0])*parseFloat(param2) + parseFloat(tableau2[1]);
 obj.resultS2=resultS2;
 
 var data1 = fs.readFileSync('./dataModel/off track student/Precision-S1&S2.txt').toString();
@@ -163,77 +162,62 @@ var precisionS2 = parseFloat(data1);
 obj.precisionS2=precisionS2;
 }
 
-if(param1!=null && param2!=null && param3!=null && param4==null && param5==null && param6==null){
-var data = fs.readFileSync('./dataModel/off track student/Coeff-S1&S2&S3.txt').toString();
-var tableau=data.toString().split("["); 
-var tableau1=tableau[1].toString().split(" ");
-var resultS1 = parseFloat(tableau1[0])*parseFloat(param1);
-var resultS2 = parseFloat(resultS1)+parseFloat(tableau1[1])*parseFloat(param2);
-var tableau2 = tableau1[2].toString().split("]");
-var resultS3 = parseFloat(resultS2)+parseFloat(tableau2[0])*parseFloat(param3);
-obj.resultS3=resultS3;
 
-var data1 = fs.readFileSync('./dataModel/off track student/Precision-S1&S2&S3.txt').toString();
-var precisionS3 = parseFloat(data1);
-obj.precisionS3=precisionS3;
-}
-
-if(param1!=null && param2!=null && param3!=null && param4!=null && param5==null && param6==null){
-var data = fs.readFileSync('./dataModel/off track student/Coeff-S1&S2&S3&Absence.txt').toString();
+if(param1!=null && param2!=null && param4!=null && param5==null && param6==null){
+var data = fs.readFileSync('./dataModel/off track student/S1&S2&absences.txt').toString();
 
 var tableau=data.toString().split("[");
-var tableau1=tableau[1].toString().split(" "); 
- 
-var resultS1 = parseFloat(tableau1[0])*parseFloat(param1);
-var resultS2 = parseFloat(resultS1)+parseFloat(tableau1[1])*parseFloat(param2);
-var resultS3 = parseFloat(resultS2)+parseFloat(tableau1[2])*parseFloat(param3);
-var tableau2 = tableau1[3].toString().split("]");
-var resultAbsence = parseFloat(resultS3)+parseFloat(tableau2[0])*parseFloat(param4);
+var tableau1=tableau[2].toString().split(" "); 
+var tableau2 = tableau1[2].toString().split("]");
+
+var resultS1 = parseFloat(tableau1[1])*parseFloat(param1);
+var resultS2 = parseFloat(resultS1)+parseFloat(tableau2[0])*parseFloat(param2);
+var resultAbsence = parseFloat(resultS2)+parseFloat(tableau1[0])*parseFloat(param4) + parseFloat(tableau2[1]);
+
 obj.resultAbsence=resultAbsence;
 
-var data1 = fs.readFileSync('./dataModel/off track student/Precision-S1&S2&S3&Absence.txt').toString();
+var data1 = fs.readFileSync('./dataModel/off track student/Precision-S1&S2&Absence.txt').toString();
 var precisionAbsence = parseFloat(data1);
 obj.precisionAbsence=precisionAbsence;
 
 }
 
-if(param1!=null && param2!=null && param3!=null && param4!=null && param5!=null && param6==null){
-var data = fs.readFileSync('./dataModel/off track student/Coeff-S1&S2&S3&Absence&Study.txt').toString();
+if(param1!=null && param2!=null && param4!=null && param5!=null && param6==null){
+var data = fs.readFileSync('./dataModel/off track student/S1&S2&absences&study.txt').toString();
 var tableau=data.toString().split("["); 
-var tableau1=tableau[1].toString().split(" ");
-var resultS1 = parseFloat(tableau1[0])*parseFloat(param1);
-var resultS2 = parseFloat(resultS1)+parseFloat(tableau1[1])*parseFloat(param2);
-var resultS3 = parseFloat(resultS2)+parseFloat(tableau1[2])*parseFloat(param3);
-var resultAbsence = parseFloat(resultS3)+parseFloat(tableau1[3])*parseFloat(param4);
-var tableau2 = tableau1[4].toString().split("]");
-var resultRevision = parseFloat(resultAbsence)+parseFloat(tableau2[0])*(parseFloat(param5)+1);
+var tableau1=tableau[2].toString().split(" ");
+var tableau2 = tableau1[3].toString().split("]");
+var resultS1 = parseFloat(tableau1[2])*parseFloat(param1);
+var resultS2 = parseFloat(resultS1)+parseFloat(tableau2[0])*parseFloat(param2);
+var resultAbsence = parseFloat(resultS2)+parseFloat(tableau1[1])*parseFloat(param4) ;
+
+var resultRevision = parseFloat(resultAbsence)+parseFloat(tableau1[0])*(parseFloat(param5)+1)+ parseFloat(tableau2[1]);
 obj.resultRevision=resultRevision;
 
-var data1 = fs.readFileSync('./dataModel/off track student/Precision-S1&S2&S3&Absence&Study.txt').toString();
+var data1 = fs.readFileSync('./dataModel/off track student/Precision-S1&S2&Absence&Study.txt').toString();
 var precisionRevision = parseFloat(data1);
 obj.precisionRevision=precisionRevision;
 }
 
 if(param6!=null){
-var data = fs.readFileSync('./dataModel/off track student/Coeff-S1&S2&S3&Absence&Study&Sup.txt').toString();
+var data = fs.readFileSync('./dataModel/off track student/S1&S2&absences&study&sup.txt').toString();
 var tableau=data.toString().split("["); 
-var tableau1=tableau[1].toString().split(" ");
-var resultS1 = parseFloat(tableau1[0])*parseFloat(param1);
-var resultS2 = parseFloat(resultS1)+parseFloat(tableau1[1])*parseFloat(param2);
-var resultS3 = parseFloat(resultS2)+parseFloat(tableau1[2])*parseFloat(param3);
-var resultAbsence = parseFloat(resultS3)+parseFloat(tableau1[3])*parseFloat(param4);
-var resultRevision = parseFloat(resultAbsence)+parseFloat(tableau1[4])*parseFloat(param5);
-var tableau2 = tableau1[5].toString().split("]");
-var resultSup = parseFloat(resultRevision)+parseFloat(tableau2[0])*parseFloat(param6);
+var tableau1=tableau[2].toString().split(" ");
+var tableau2 = tableau1[4].toString().split("]");
+var resultS1 = parseFloat(tableau1[3])*parseFloat(param1);
+var resultS2 = parseFloat(resultS1)+parseFloat(tableau2[0])*parseFloat(param2);
+var resultAbsence = parseFloat(resultS2)+parseFloat(tableau1[2])*parseFloat(param4);
+var resultRevision = parseFloat(resultAbsence)+parseFloat(tableau1[0])*parseFloat(param5);
+
+var resultSup = parseFloat(resultRevision)+parseFloat(tableau1[1])*parseFloat(param6) + parseFloat(tableau2[1]);
 obj.resultSup=resultSup;
-var data1 = fs.readFileSync('./dataModel/off track student/Precision-S1&S2&S3&Absence&Study&Sup.txt').toString();
+var data1 = fs.readFileSync('./dataModel/off track student/Precision-S1&S2&Absence&Study&Sup.txt').toString();
 var precisionSup = parseFloat(data1);
 obj.precisionSup=precisionSup;
 
 }
 res.json(obj);
 });
-
 app.get("/smartparking",  function(req, res) {
 /*var param1=req.query.param1;
 var param2=req.query.param2;
