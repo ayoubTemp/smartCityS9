@@ -349,20 +349,20 @@ License: You must have a valid license purchased only from themeforest(the above
                             return sParameterName[1];
                         }}};
  		        var name= GetURLParameter('name');
-				var prenom = GetURLParameter('prenom');
+				var model = GetURLParameter('model');
 				
 				
-				$.getJSON('/events?name='+name+'&prenom='+prenom , function(dataProfil) {
+				$.getJSON('/events?name='+name+'&model='+model , function(dataProfil) {
 				//var profilJson=dataProfil;
 				//var descriptif="je suis giiiii ";
-				/*if(name=='nouri')
-				$('#example2').append(name + '   ' + prenom + ', ' + '6 ans et sa capacité de paiement est 15e');
-				if(name=='ghanem')
-				$('#example2').append(name + '   ' + prenom + ', ' + '21 ans et désire voir les evenements gratuit');
-				if(name=='ftouhi')
-				$('#example2').append(name + '   ' + prenom + ', ' + '22 ans et désire voir les evenements gratuit');
-				if(name=='bahssou')
-				$('#example2').append(name + '   ' + prenom + ', ' + '22 ans et sa capacité de paiement est 30e');*/
+				if(model==3)
+				$('#example2').append(name +  ', ' + 'un enfant désire voir les événements qui correspondent aux enfants (petits, jeune) dont le prix ne dépasse pas 15e');
+				//if(name=='handicap')
+				//$('#example2').append(name + '   ' + prenom + ', ' + '21 ans et désire voir les evenements gratuit');
+				if(model==2)
+				$('#example2').append(name +  ', ' + 'un adulte désire voir les evenements de musiques, les concerts, les spectacles qui sont gratuit ');
+				if(model==1)
+				$('#example2').append(name  + ', ' + 'un adulte désire voir les événements de sports, athletiques, et les matchs ');
 				//var div = document.getElementById("example2");  
 				//div.textContent = descriptif; 
 				})
@@ -370,7 +370,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				
 				
 				
-                $.get( '/events?name='+name , function( data) {
+                $.get( '/events?name='+name+'&model='+model , function( data) {
 				
 				
 				
@@ -391,7 +391,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 "</td><td>"+row.jourMin+"</td><td>"+row.jourMax+"</td></tr>"
                     })
                     content+="</tbody>"
-					var prenom = GetURLParameter('prenom');
+					//var prenom = GetURLParameter('prenom');
 					
 					//document.getElementById('imageprofil').src='assets/admin/pages/media/profile/'+prenom+'.jpg';
 					

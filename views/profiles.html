@@ -276,29 +276,136 @@ Profile.init(); // init page demo
 <script>
 function choixProfil(){
 			
-			
+			var nom = $('#nom').val();
 			var age = $('#age').val();
 			var categorie= document.getElementById("categorie").selectedIndex;
 			var prix= document.getElementById("prix").selectedIndex;
 			
+			
+			if((categorie==0) && (prix==0) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=15";
+				
+			}
+			
+			if((categorie==0) && (prix==1) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=9";
+				
+			}
+			
+			if((categorie==0) && (prix==3) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=10";
+				
+			}
+			
+			
 			if((categorie==0) && (prix==2) && (age>16)){
 				var element = document.getElementById("lien");
 				
-				location.href = "/eventfullCity?name=bahssou&prenom=ayoub";
+				location.href = "/eventfullCity?name="+nom+"&model=1";
 				
 			}
+			
+			if((categorie==0) && (prix==3) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=10";
+				
+			}
+			
+			
 			
 			if((categorie==1) && (prix==0) && (age>16)){
 				var element = document.getElementById("lien");
 				
-				location.href = "/eventfullCity?name=ftouhi&prenom=hafsa";
+				location.href = "/eventfullCity?name="+nom+"&model=2";
 				
 			}
 			
-			if(age<16){
+			
+			if((categorie==1) && (prix==1) && (age>16)){
 				var element = document.getElementById("lien");
 				
-				location.href = "/eventfullCity?name=nouri&prenom=hajar";
+				location.href = "/eventfullCity?name="+nom+"&model=7";
+				
+			}
+			
+			
+			if((categorie==1) && (prix==2) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=4";
+				
+			}
+			
+			if((categorie==1) && (prix==3) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=8";
+				
+			}
+		
+			if((categorie==2) && (prix==0) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=5";
+				
+			}
+			
+			
+			if((categorie==2) && (prix==1) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=11";
+				
+			}
+			
+			
+			if((categorie==2) && (prix==2) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=12";
+				
+			}
+			
+			if((categorie==2) && (prix==3) && (age>16)){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=6";
+				
+			}
+			
+			
+			if(age<=16 && (prix==0) ){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=13";
+				
+			}
+			
+			if(age<=16 && (prix==1) ){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=3";
+				
+			}
+			
+			if(age<=16 && (prix==2) ){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=14";
+				
+			}
+			
+			if(age<=16 && (prix==3) ){
+				var element = document.getElementById("lien");
+				
+				location.href = "/eventfullCity?name="+nom+"&model=15";
 				
 			}
 			

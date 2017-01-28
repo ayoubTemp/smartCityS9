@@ -113,8 +113,8 @@ app.get("/eventsOld",  function(req, res) {
 app.get("/events",  function(req, res) {
    ///check if the user specified the coordinates
    
-     var name=req.query.name;
-     fs.readFile('./dataModel/eventfull city/model_'+name+'.json', 'utf8', function (err, data) {
+     var model=req.query.model;
+     fs.readFile('./dataModel/eventfull city/model_'+model+'.json', 'utf8', function (err, data) {
   if (err) throw err;
   events = JSON.parse(data);
  res.json(events);
