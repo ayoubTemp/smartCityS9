@@ -106,7 +106,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- Page Content -->
         <!-- BEGIN PAGE HEADER-->
         <h3 class="page-title">
-            eventfull city <small>petite description</small>
+            eventfull city 
         </h3>
 
 
@@ -117,12 +117,13 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <!-- BEGIN Profil CONTENT-->
         <div class="row margin-bottom-20">
-           	<div class="col-md-2 col-sm-5">
+           	<div class="col-md-2 ">
 			<!-- BEGIN PROFILE SIDEBAR -->
 			<div class="profile-sidebar">
 				<!-- PORTLET MAIN -->
 				<div class="portlet light profile-sidebar-portlet">
 					<!-- SIDEBAR USERPIC -->
+
 					<!--div class="profile-userpic">
 						<img id="imageprofil" class="img-responsive" alt="">
 						<!--img id="imageprofil" class="img-responsive" alt=""-->
@@ -140,12 +141,19 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- END PROFILE CONTENT -->
 			</div>
 			</div>
-			<div class="col-md-6">
-						<div id="example2" >
+
+			<div class="col-md-9">
+						<b>
+							<big>
+								
+								<div id="example2" >
 									
 							
 
-						</div>
+								</div>
+								
+							</big>
+						</b>
 					</div>
 				
 		
@@ -231,8 +239,8 @@ License: You must have a valid license purchased only from themeforest(the above
 <section class="divider">
     <div class="container">
         <blockquote>
-            "blablibla blablibla blablibla blablibla blablibla blablibla blablibla blablibla "		</blockquote>
-        <h3>- Ayoub bahssou -</h3>
+            " Smart citizens populating smart cities "		</blockquote>
+        <h3>- Smart City -</h3>
     </div>
 </section>
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
@@ -356,15 +364,42 @@ License: You must have a valid license purchased only from themeforest(the above
 				//var profilJson=dataProfil;
 				//var descriptif="je suis giiiii ";
 				if(model==3)
-				$('#example2').append(name +  ', ' + 'un enfant désire voir les événements qui correspondent aux enfants (petits, jeune) dont le prix ne dépasse pas 15e');
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un enfant désire voir les événements qui correspondent aux enfants (petits, jeune) dont le prix ne dépasse pas 15e');
 				//if(name=='handicap')
 				//$('#example2').append(name + '   ' + prenom + ', ' + '21 ans et désire voir les evenements gratuit');
 				if(model==2)
-				$('#example2').append(name +  ', ' + 'un adulte désire voir les evenements de musiques, les concerts, les spectacles qui sont gratuit ');
+				$('#example2').append('Le profil concerné: '+ name +  ', ' + 'un adulte désire voir les evenements de musiques, les concerts, les spectacles qui sont gratuit ');
 				if(model==1)
-				$('#example2').append(name  + ', ' + 'un adulte désire voir les événements de sports, athletiques, et les matchs ');
+				$('#example2').append('Le profil concerné: '+name  + ', ' + 'un adulte désire voir les événements de sports, athletiques, et les matchs dont le prix ne dépasse pas 30e ');
 				//var div = document.getElementById("example2");  
 				//div.textContent = descriptif; 
+				if(model==4)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un adulte désire voir les evenements de musiques, les concerts, les spectacles dont le prix ne dépasse pas 30e');
+				if(model==5)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un adulte désire voir les événements d\'expositions et des musées qui sont gratuits');
+				if(model==6)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un enfant désire voir les événements d\'expositions et des musées dont le prix n\'est pas important');
+				if(model==7)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un adulte désire voir les evenements de musiques, les concerts, les spectacles dont le prix ne dépasse pas 15e');
+				if(model==8)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un adulte désire voir les evenements de musiques, les concerts, les spectacles dont le prix n\'est pas important');
+				if(model==9)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un adulte désire voir les événements de sports, athletiques, et les matchs dont le prix ne dépasse pas 15e ');
+				if(model==10)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un adulte désire voir les événements de sports, athletiques, et les matchs dont le prix n\'est pas important ');
+				if(model==11)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un adulte désire voir les événements d\'expositions et des musées dont le prix ne dépasse pas 15e');
+				if(model==12)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un adulte désire voir les événements d\'expositions et des musées dont le prix ne dépasse pas 30e');
+				if(model==13)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un enfant désire voir les événements qui correspondent aux enfants (petits, jeune) qui sont gratuits');
+				if(model==14)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un enfant désire voir les événements qui correspondent aux enfants (petits, jeune) dont le prix ne dépasse pas 30e');
+				if(model==15)
+				$('#example2').append('Le profil concerné: '+name +  ', ' + 'un enfant désire voir les événements qui correspondent aux enfants (petits, jeune) dont le prix n\'est pas important');
+				if(model==16)
+				$('#example2').append('Le profil concerné: '+name  + ', ' + 'un adulte désire voir les événements de sports, athletiques, et les matchs qui sont gratuits ');
+				
 				})
 				
 				
@@ -408,7 +443,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                     var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 12,
-                        center: pos
+                        center: {lat: parseFloat(eventsJson[0].latitude), lng: parseFloat(eventsJson[0].longitude)}
                     });
 
 
@@ -435,7 +470,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 title:eventsJson[i].name
                             });*/
                              var marker = new google.maps.Marker({
-                                 position: {lat: eventsJson[i].latitude, lng:eventsJson[i].longitude},
+                                 position: {lat: parseFloat(eventsJson[i].latitude), lng: parseFloat(eventsJson[i].longitude)},
                                  map: map,
                                  title:eventsJson[i].titre,
                                  clickable:true

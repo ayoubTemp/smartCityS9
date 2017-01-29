@@ -1,5 +1,17 @@
-nom;prenom;age;centre d'interet;situation;payant;capacité
-ghanem;gihane;21;tous;handicape;non;0
-nouri;hajar;6;loisir;eleve;oui;15
-bahssou;ayoub;22;sport;stagiaire;oui;30
-ftouhi;hafsa;22;Concert;étudiante;non;0
+nom;age;centre d'interet;payant;capacité
+model_1;23;sport;oui;30
+model_2;26;Concert;non;0
+model_3;32;enfant;oui;15
+model_4;45;Concert;oui;30
+model_5;22;Exposition;non;0
+model_6;41;Exposition;oui;2000
+model_7;22;Concert;oui;15
+model_8;37;Concert;oui;2000
+model_9;45;sport;oui;15
+model_10;37;sport;oui;2000
+model_11;29;Exposition;oui;15
+model_12;34;Exposition;oui;30
+model_13;14;enfant;non;0
+model_14;12;enfant;oui;30
+model_15;9;enfant;oui;2000
+model_16;19;sport;non;0
